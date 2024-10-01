@@ -1,0 +1,41 @@
+#                    THE STACK AND STACKFRAME
+Is a section in memory where functions,local variables return address for other functions  and function parameters are stored.
+Every function call to program in execution creates a new stack frame
+
+Code execution,program execution starts at functions
+And functions call other functions 
+When they end they must return to original function 
+
+Call in assembly calls a function, 
+Return address (address of next instruction after function exe is pushed onto the stack)
+When function is finished the return address is popped of and then jumps to that address to regain control from where it was before func call.
+
+> Parameters loaded in reverse order
+> Return Address
+> Local variables
+But depends return address can be pushed first before parameters
+
+BP is like the start of the function, Its at the base of the stack frame
+
+PUSH RBP saves current base pointer
+MOV RBP TO RSP, Establishes new stack frame,
+SUB creates space for stack frame
+
+Leave restores BP to its original value, by popping saved BP off the stack and sets SP to back of original function
+RET pops return address off the stack and jumps to that address, effectively returning control to where it was.
+
+> Program returns to execution following original function call
+
+Last In First Out
+
+# Now How to clearly see this
+variables are first pushed on the stack in reverse order,
+Then the return address of the callers function
+> Not only does call have and address to jump to, it also leavea a return address there.
+  like it leaves a way back to return our value there.
+> Saving EBP helps to keep track of previous frame 
+  Returns stack to its previous state and continue execution 
+
+Now each time we push things onto the stack it advances the ESP down to lower memory addresses by -4bytes.
+> Subtracting from ESP is making space in memory.
+> Adding to ESP is removing space in memory.
